@@ -23,12 +23,55 @@ Vagrant.configure(2) do |config|
         v.name = "web1"
     end
   end
-  config.vm.define "db" do |db|
+
+ config.vm.define "web2" do |web|
+    web.vm.box = "precise32"
+    web.vm.provider "virtualbox" do |v|
+        v.name = "web2"
+    end
+  end
+
+  config.vm.define "b1" do |db|
     db.vm.box = "precise32"
     db.vm.provider "virtualbox" do |v|
-        v.name = "db1"
+        v.name = "b1"
     end
-
+  end
+  config.vm.define "b2" do |db|
+    db.vm.box = "precise32"
+    db.vm.provider "virtualbox" do |v|
+        v.name = "b2"
+    end
+  end
+  config.vm.define "lb" do |lb|
+    lb.vm.box = "precise32"
+    lb.vm.provider "virtualbox" do |v|
+        v.name = "lb"
+    end
+  end
+  config.vm.define "storage1" do |st|
+    st.vm.box = "precise32"
+    st.vm.provider "virtualbox" do |v|
+        v.name = "storage1"
+    end
+  end
+  config.vm.define "storage2" do |st|
+    st.vm.box = "precise32"
+    st.vm.provider "virtualbox" do |v|
+        v.name = "storage2"
+    end
+  end
+  config.vm.define "monitoring" do |mon|
+    mon.vm.box = "precise32"
+    mon.vm.provider "virtualbox" do |v|
+        v.name = "mon"
+    end
+  end
+  config.vm.define "jenkins" do |jn|
+      jn.vm.box = "precise32"
+    jn.vm.provider "virtualbox" do |v|
+        v.name = "jn"
+    end
   end
 
   # Disable automatic box update checking. If you disable this, then
