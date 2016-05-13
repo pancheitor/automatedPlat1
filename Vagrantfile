@@ -19,59 +19,89 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "web1" do |web|
     web.vm.box = "precise32"
+    web.vm.network "private_network", ip: "192.168.50.4"
     web.vm.provider "virtualbox" do |v|
         v.name = "web1"
     end
+    web.vm.provision :shell, path: "bootstrap_web.sh"
   end
 
  config.vm.define "web2" do |web|
     web.vm.box = "precise32"
+    web.vm.network "private_network", ip: "192.168.50.5"
     web.vm.provider "virtualbox" do |v|
         v.name = "web2"
     end
+    web.vm.provision :shell, path: "bootstrap_web.sh"
   end
 
   config.vm.define "b1" do |db|
     db.vm.box = "precise32"
+    db.vm.network "private_network", ip: "192.168.50.6"
     db.vm.provider "virtualbox" do |v|
         v.name = "b1"
     end
+    db.vm.provision :shell, path: "bootstrap_db.sh"
   end
   config.vm.define "b2" do |db|
     db.vm.box = "precise32"
+    db.vm.network "private_network", ip: "192.168.50.7"
     db.vm.provider "virtualbox" do |v|
         v.name = "b2"
     end
+    db.vm.provision :shell, path: "bootstrap_db.sh"
   end
   config.vm.define "lb" do |lb|
     lb.vm.box = "precise32"
+    lb.vm.network "private_network", ip: "192.168.50.2"
     lb.vm.provider "virtualbox" do |v|
         v.name = "lb"
     end
+    lb.vm.provision :shell, path: "bootstrap_lb.sh"
+    lb.vm.network :forwarded_port, guest: 80, host: 80
   end
   config.vm.define "storage1" do |st|
     st.vm.box = "precise32"
+    st.vm.network "private_network", ip: "192.168.50.8"
     st.vm.provider "virtualbox" do |v|
         v.name = "storage1"
     end
+    st.vm.synced_folder ".", "/home",
+      :nfs => true,
+      :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']
   end
   config.vm.define "storage2" do |st|
     st.vm.box = "precise32"
+    st.vm.network "private_network", ip: "192.168.50.9"
     st.vm.provider "virtualbox" do |v|
         v.name = "storage2"
     end
+    st.vm.synced_folder ".", "/home",
+      :nfs => true,
+      :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']
   end
   config.vm.define "monitoring" do |mon|
     mon.vm.box = "precise32"
+    mon.vm.network "private_network", ip: "192.168.50.10"
     mon.vm.provider "virtualbox" do |v|
         v.name = "mon"
     end
   end
   config.vm.define "jenkins" do |jn|
-      jn.vm.box = "precise32"
+    jn.vm.box = "precise32"
+    jn.vm.network "private_network", ip: "192.168.50.11"
     jn.vm.provider "virtualbox" do |v|
         v.name = "jn"
     end
+  end
+
+  config.vm.define "test" do |tst|
+    tst.vm.box = "precise32"
+    tst.vm.network "private_network", ip: "192.168.50.12"
+    tst.vm.provider "virtualbox" do |v|
+        v.name = "tst"
+    end
+    tst.vm.provision :shell, path: "bootstrap_st.sh"
   end
 
   # Disable automatic box update checking. If you disable this, then
