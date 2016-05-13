@@ -1,0 +1,19 @@
+127.0.0.1	localhost
+127.0.1.1	precise32
+192.168.50.4    web1
+192.168.50.5    web2
+192.168.50.6    b1
+192.168.50.7    b2
+192.168.50.2    lb
+192.168.50.8    storage1
+192.168.50.9    storage2
+192.168.50.10   mon
+192.168.50.11   jn
+192.168.50.12   tst
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters

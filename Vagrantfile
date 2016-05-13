@@ -66,9 +66,10 @@ Vagrant.configure(2) do |config|
     st.vm.provider "virtualbox" do |v|
         v.name = "storage1"
     end
-    st.vm.synced_folder ".", "/home",
-      :nfs => true,
-      :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']
+    st.vm.provision :shell, path: "bootstrap_st1.sh"
+#    st.vm.synced_folder ".", "/home",
+#      :nfs => true,
+#      :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']
   end
   config.vm.define "storage2" do |st|
     st.vm.box = "precise32"
@@ -76,9 +77,10 @@ Vagrant.configure(2) do |config|
     st.vm.provider "virtualbox" do |v|
         v.name = "storage2"
     end
-    st.vm.synced_folder ".", "/home",
-      :nfs => true,
-      :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']
+    st.vm.provision :shell, path: "bootstrap_st2.sh"
+#    st.vm.synced_folder ".", "/home",
+#      :nfs => true,
+#      :linux__nfs_options => ['rw','no_subtree_check','all_squash','async']
   end
   config.vm.define "monitoring" do |mon|
     mon.vm.box = "precise32"
