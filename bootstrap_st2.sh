@@ -20,4 +20,4 @@ mkdir /data/brick1/gv0
 gluster peer probe storage1
 gluster volume create gv0 replica 2 storage1:/data/brick1/gv0 storage2:/data/brick1/gv0
 gluster volume start gv0
-ln -fs /vagrant /data/brick1/gv0
+ln -fs /vagrant/web /data/brick1/gv0

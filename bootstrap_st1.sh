@@ -17,4 +17,4 @@ mkdir /data/brick1
 mkdir /data/brick1/gv0
 
 
-ln -fs /vagrant /data/brick1/gv0
+ln -fs /vagrant/web /data/brick1/gv0
